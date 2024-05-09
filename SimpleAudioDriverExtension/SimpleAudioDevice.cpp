@@ -36,6 +36,7 @@ struct SimpleAudioDevice_IVars
 
 	OSSharedPtr<IOUserAudioStream>			m_output_stream;
 	OSSharedPtr<IOMemoryMap>				m_output_memory_map;
+	OSSharedPtr<IOUserAudioLevelControl>	m_output_volume_control;
 
 	OSSharedPtr<IOUserAudioStream>			m_input_stream;
 	OSSharedPtr<IOMemoryMap>				m_input_memory_map;
@@ -81,6 +82,7 @@ bool SimpleAudioDevice::init(IOUserAudioDriver* in_driver,
 
 	OSSharedPtr<OSString> input_stream_name = OSSharedPtr(OSString::withCString("SimpleInputStream"), OSNoRetain);
 	OSSharedPtr<OSString> input_volume_control_name = OSSharedPtr(OSString::withCString("SimpleInputVolumeControl"), OSNoRetain);
+    OSSharedPtr<OSString> output_volume_control_name = OSSharedPtr(OSString::withCString("SimpleOutputVolumeControl"), OSNoRetain);
 	OSSharedPtr<OSString> input_data_source_control = OSSharedPtr(OSString::withCString("Input Tone Frequency Control"), OSNoRetain);
 
 	// Custom property information.
@@ -202,6 +204,20 @@ bool SimpleAudioDevice::init(IOUserAudioDriver* in_driver,
 	error = AddControl(ivars->m_input_volume_control.get());
 	FailIfError(error, , Failure, "failed to add input volume level control");
 
+	ivars->m_output_volume_control = IOUserAudioLevelControl::Create(in_driver,
+																	true,
+																	-6.0,
+																	{-96.0, 0.0},
+																	IOUserAudioObjectPropertyElementMain,
+																	IOUserAudioObjectPropertyScope::Output,
+																	IOUserAudioClassID::VolumeControl);
+	FailIfNULL(ivars->m_output_volume_control.get(), error = kIOReturnNoMemory, Failure, "Failed to create output volume control");
+	ivars->m_output_volume_control->SetName(output_volume_control_name.get());
+
+	// Add the volume control to the device object.
+	error = AddControl(ivars->m_output_volume_control.get());
+	FailIfError(error, , Failure, "failed to add output volume level control");
+
 	// Create the input data source selector control for controlling the sine tone frequency.
 	ivars->m_input_selector_control = IOUserAudioSelectorControl::Create(in_driver,
 																		 true,
@@ -301,6 +317,7 @@ Failure:
 	ivars->m_input_stream.reset();
 	ivars->m_input_memory_map.reset();
 	ivars->m_input_volume_control.reset();
+    ivars->m_output_volume_control.reset();
 	ivars->m_zts_timer_event_source.reset();
 	ivars->m_zts_timer_occurred_action.reset();
 	return false;
@@ -316,6 +333,7 @@ void SimpleAudioDevice::free()
 		ivars->m_input_stream.reset();
 		ivars->m_input_memory_map.reset();
 		ivars->m_input_volume_control.reset();
+    	ivars->m_output_volume_control.reset();
 		ivars->m_input_selector_control.reset();
 		ivars->m_zts_timer_event_source.reset();
 		ivars->m_zts_timer_occurred_action.reset();
