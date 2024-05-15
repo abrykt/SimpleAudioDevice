@@ -22,6 +22,8 @@
 		54E42BCA286A1697000E1E9A /* SimpleAudioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54E42BB9286A1696000E1E9A /* SimpleAudioView.swift */; };
 		54E42BCB286A1697000E1E9A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 54E42BBA286A1697000E1E9A /* Assets.xcassets */; };
 		54E42BCC286A1697000E1E9A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 54E42BBA286A1697000E1E9A /* Assets.xcassets */; };
+		77ADA9412BF4A5D000A04979 /* MyBooleanControl.iig in Sources */ = {isa = PBXBuildFile; fileRef = 77ADA9402BF4A5D000A04979 /* MyBooleanControl.iig */; };
+		77ADA9432BF4A7D800A04979 /* MyBooleanControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 77ADA9422BF4A7D800A04979 /* MyBooleanControl.cpp */; };
 		C5B7D9C326128AC50089B4C3 /* SimpleAudioDriver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C5B7D9C226128AC50089B4C3 /* SimpleAudioDriver.cpp */; };
 		C5B7D9C526128AC50089B4C3 /* SimpleAudioDriver.iig in Sources */ = {isa = PBXBuildFile; fileRef = C5B7D9C426128AC50089B4C3 /* SimpleAudioDriver.iig */; };
 		C5B7D9D1261291200089B4C3 /* SimpleAudioDevice.iig in Sources */ = {isa = PBXBuildFile; fileRef = C5B7D9D0261291200089B4C3 /* SimpleAudioDevice.iig */; };
@@ -91,6 +93,8 @@
 		54E42BBF286A1697000E1E9A /* SimpleAudio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleAudio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		54E42BC4286A1697000E1E9A /* SimpleAudio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleAudio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		54E42BC6286A1697000E1E9A /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
+		77ADA9402BF4A5D000A04979 /* MyBooleanControl.iig */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.iig; path = MyBooleanControl.iig; sourceTree = "<group>"; };
+		77ADA9422BF4A7D800A04979 /* MyBooleanControl.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MyBooleanControl.cpp; sourceTree = "<group>"; };
 		9E3D233737228B0525A55F63 /* SampleCode.xcconfig */ = {isa = PBXFileReference; name = SampleCode.xcconfig; path = Configuration/SampleCode.xcconfig; sourceTree = "<group>"; };
 		C5B7D9BC26128AC50089B4C3 /* com.example.apple-samplecode.SimpleAudio.Driver.dext */ = {isa = PBXFileReference; explicitFileType = "wrapper.driver-extension"; includeInIndex = 0; path = "com.example.apple-samplecode.SimpleAudio.Driver.dext"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5B7D9BF26128AC50089B4C3 /* DriverKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DriverKit.framework; path = Library/Frameworks/DriverKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -247,6 +251,8 @@
 				C5D787AF26168F46006047E5 /* SimpleAudioDriverKeys.h */,
 				C5B7D9C626128AC50089B4C3 /* Info.plist */,
 				C5B7D9CE26128B150089B4C3 /* SimpleAudioDriver.entitlements */,
+				77ADA9402BF4A5D000A04979 /* MyBooleanControl.iig */,
+				77ADA9422BF4A7D800A04979 /* MyBooleanControl.cpp */,
 			);
 			path = SimpleAudioDriverExtension;
 			sourceTree = "<group>";
@@ -419,7 +425,9 @@
 			files = (
 				C5B7D9D1261291200089B4C3 /* SimpleAudioDevice.iig in Sources */,
 				C5B7D9C526128AC50089B4C3 /* SimpleAudioDriver.iig in Sources */,
+				77ADA9412BF4A5D000A04979 /* MyBooleanControl.iig in Sources */,
 				C5D787AE26168E59006047E5 /* SimpleAudioDriverUserClient.cpp in Sources */,
+				77ADA9432BF4A7D800A04979 /* MyBooleanControl.cpp in Sources */,
 				C5D787AC261667FC006047E5 /* SimpleAudioDriverUserClient.iig in Sources */,
 				C5B7D9D3261291F20089B4C3 /* SimpleAudioDevice.cpp in Sources */,
 				C5B7D9C326128AC50089B4C3 /* SimpleAudioDriver.cpp in Sources */,

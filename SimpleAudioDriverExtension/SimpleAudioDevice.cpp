@@ -18,6 +18,8 @@ The implementation of an AudioDriverKit device that generates a
 #include <math.h>
 #include <DriverKit/DriverKit.h>
 
+#include "MyBooleanControl.h"
+
 #define kSampleRate_1 44100.0
 #define kSampleRate_2 48000.0
 
@@ -220,10 +222,14 @@ bool SimpleAudioDevice::init(IOUserAudioDriver* in_driver,
 	error = AddControl(ivars->m_output_volume_control.get());
 	FailIfError(error, , Failure, "failed to add output volume level control");
 
-	ivars->m_output_mute_control = IOUserAudioBooleanControl::Create( in_driver, true, true, IOUserAudioObjectPropertyElementMain,
-    IOUserAudioObjectPropertyScope::Output, IOUserAudioClassID::MuteControl);
+    ivars->m_output_mute_control = OSSharedPtr(OSTypeAlloc(MyBooleanControl), OSNoRetain);
 
 	FailIfNULL(ivars->m_output_mute_control.get(), error = kIOReturnNoMemory, Failure, "Failed to create output mute control");
+	
+    ivars->m_output_mute_control->init(in_driver, true, true, IOUserAudioObjectPropertyElementMain,
+                            IOUserAudioObjectPropertyScope::Output,
+                            IOUserAudioClassID::MuteControl);
+
 	ivars->m_output_mute_control->SetName(output_mute_control_name.get());
 
 	// Add the volume control to the device object.

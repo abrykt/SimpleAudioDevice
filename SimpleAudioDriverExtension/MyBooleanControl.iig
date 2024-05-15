@@ -1,0 +1,12 @@
+#ifndef MyBooleanControl_h
+#define MyBooleanControl_h
+
+#include <AudioDriverKit/IOUserAudioBooleanControl.iig>
+
+class MyBooleanControl : public IOUserAudioBooleanControl {
+public:
+kern_return_t HandleChangeControlValue(bool in_control_value) override;
+
+};
+
+#endif /* MyBooleanControl_h */
